@@ -8,9 +8,9 @@ import org.w3c.dom.NodeList;
 
 /***
  * 
- * Collection of BaseCamp ToDoList Objects
+ * BaseCamp ToDoItem Object
  * 
- * @author jondavidjohn
+ * @author Dominik Hirt
  *
  */
 public class ToDoItems extends BaseCampEntity
