@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BasecampAPI" default="jar">
+    <description>
+            jar builder
+    </description>
+
+    <!-- ================================= 
+          target: default              
+         ================================= -->
+    <target name="jar" description="description">
+        <jar destfile="../java-basecamp-api-wrapper-jar-plugin/lib/basecampAPI.jar">
+            <fileset dir="bin">
+                <include name="**/*"/>
+            </fileset>
+        </jar>
+    </target>
+
+</project>
