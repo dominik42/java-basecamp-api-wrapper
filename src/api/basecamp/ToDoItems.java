@@ -25,11 +25,15 @@ public class ToDoItems extends BaseCampEntity
      * 
      * @param auth	BCAuth
      */
-    public ToDoItems(BCAuth auth, String todoListId)
+    public ToDoItems(BCAuth auth, String todoListId, String personId, boolean loadCompleted)
     {
         super(auth);
 
-        Element todoItemsElement = super.get("/todo_lists/" + todoListId + "/todo_items.xml");
+        StringBuilder request = new StringBuilder("/todo_lists/");
+        request.append(todoListId);
+        request.append("/todo_items.xml");
+
+        Element todoItemsElement = super.get(request.toString());
         //get entry NodeList
         NodeList nl = todoItemsElement.getElementsByTagName("todo-item");
 
@@ -37,10 +41,27 @@ public class ToDoItems extends BaseCampEntity
         {
             Element todoItemElement = (Element) nl.item(i);
             ToDoItem todoItem = new ToDoItem(auth, todoItemElement);
-            this.items.add(todoItem);
-            this.todoItemCount++;
+
+            System.out.println("found item: " + todoItem);
+
+            if (matchPerson(todoItem, personId) && matchState(todoItem, loadCompleted))
+            {
+                System.out.println("add item: " + todoItem);
+                this.items.add(todoItem);
+                this.todoItemCount++;
+            }
         }
 
+    }
+
+    private boolean matchState(ToDoItem todoItem, boolean loadCompleted)
+    {
+        return loadCompleted || !todoItem.isCompleted();
+    }
+
+    private boolean matchPerson(ToDoItem todoItem, String personId)
+    {
+        return Integer.valueOf(personId) == todoItem.getResponsiblePartyId();
     }
 
     /**

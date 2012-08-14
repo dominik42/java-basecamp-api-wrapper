@@ -20,6 +20,7 @@ public class ToDoItem extends BaseCampEntity
     private Date createdOn;
     private boolean completed;
     private Date dueAt;
+    private int responsiblePartyId;
     private String responsiblePartyName;
 
     /***
@@ -57,6 +58,10 @@ public class ToDoItem extends BaseCampEntity
             this.dueAt = calDueAt.getTime();
         }
         this.responsiblePartyName = ElementValue.getTextValue(element, "responsible-party-name");
+        if (responsiblePartyName != null)
+        {
+            this.responsiblePartyId = ElementValue.getIntValue(element, "responsible-party-id");
+        }
     }
 
     public int getId()
@@ -94,12 +99,20 @@ public class ToDoItem extends BaseCampEntity
         this.dueAt = date;
     }
 
+    public int getResponsiblePartyId()
+    {
+        return responsiblePartyId;
+    }
+
     public String getResponsiblePartyName()
     {
         return responsiblePartyName;
     }
 
-    //--- Getters
+    public String toString()
+    {
+        return this.id + ":" + this.content;
+    }
 
 
 }

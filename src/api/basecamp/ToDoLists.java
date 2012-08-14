@@ -10,7 +10,7 @@ import org.w3c.dom.NodeList;
  * 
  * Collection of BaseCamp ToDoList Objects
  * 
- * @author jondavidjohn
+ * @author Dominik Hirt
  *
  */
 public class ToDoLists extends BaseCampEntity
@@ -18,6 +18,29 @@ public class ToDoLists extends BaseCampEntity
 
     private List<ToDoList> items = new ArrayList<ToDoList>();
     private int todolistCount = 0;
+
+    /***
+     * 
+     * Get All ToDoLists for the current user
+     * 
+     * @param auth	BCAuth
+     */
+    public ToDoLists(BCAuth auth)
+    {
+        super(auth);
+
+        Element todoListsElement = super.get("/todo_lists.xml");
+        //get entry NodeList
+        NodeList nl = todoListsElement.getElementsByTagName("todo-list");
+
+        for (int i = 0; i < nl.getLength(); i++)
+        {
+            Element todoListElement = (Element) nl.item(i);
+            ToDoList todoList = new ToDoList(auth, todoListElement);
+            this.items.add(todoList);
+            this.todolistCount++;
+        }
+    }
 
     /***
      * 
