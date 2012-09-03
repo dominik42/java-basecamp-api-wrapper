@@ -8,7 +8,7 @@ import org.w3c.dom.NodeList;
 
 /***
  * 
- * BaseCamp ToDoItem Object
+ * The BaseCamp ToDoItem object
  * 
  * @author Dominik Hirt
  *

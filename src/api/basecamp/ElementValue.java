@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
  * Static Class to process XML Elements
  * 
  * @author jondavidjohn
- *
+ * 
  */
 public class ElementValue
 {
@@ -23,9 +23,11 @@ public class ElementValue
      * 
      * Get Child Element String Value
      * 
-     * @param ele		Parent Element
-     * @param tagName	Child tag-name
-     * @return	String value of contents
+     * @param ele
+     *            Parent Element
+     * @param tagName
+     *            Child tag-name
+     * @return String value of contents
      */
     static String getTextValue(Element ele, String tagName)
     {
@@ -51,9 +53,11 @@ public class ElementValue
      * 
      * Get Child Element String Value
      * 
-     * @param ele		Parent Element
-     * @param tagName	Child tag-name
-     * @return	Int value of contents
+     * @param ele
+     *            Parent Element
+     * @param tagName
+     *            Child tag-name
+     * @return Int value of contents
      */
     static int getIntValue(Element ele, String tagName)
     {
@@ -73,9 +77,11 @@ public class ElementValue
      * 
      * Get Child Element String Value
      * 
-     * @param ele		Parent Element
-     * @param tagName	Child tag-name
-     * @return	Long value of contents
+     * @param ele
+     *            Parent Element
+     * @param tagName
+     *            Child tag-name
+     * @return Long value of contents
      */
     static long getLongValue(Element ele, String tagName)
     {
@@ -95,9 +101,11 @@ public class ElementValue
      * 
      * Get Child Element String Value
      * 
-     * @param ele		Parent Element
-     * @param tagName	Child tag-name
-     * @return	Double value of contents
+     * @param ele
+     *            Parent Element
+     * @param tagName
+     *            Child tag-name
+     * @return Double value of contents
      */
     static double getDoubleValue(Element ele, String tagName)
     {
@@ -117,15 +125,24 @@ public class ElementValue
      * 
      * Get Child Element String Value
      * 
-     * @param ele		Parent Element
-     * @param tagName	Child tag-name
-     * @return	Bool value of contents
+     * @param ele
+     *            Parent Element
+     * @param tagName
+     *            Child tag-name
+     * @return Bool value of contents
      */
     static boolean getBoolValue(Element ele, String tagName)
     {
         //TODO Catch exception
 
-        return (ElementValue.getTextValue(ele, tagName).compareTo("true") == 0);
+        if (ElementValue.getTextValue(ele, tagName) != null && !ElementValue.getTextValue(ele, tagName).equals(""))
+        {
+            return (ElementValue.getTextValue(ele, tagName).compareTo("true") == 0);
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /***
@@ -134,9 +151,11 @@ public class ElementValue
      * 
      * Expects DateTime in Zulu format ex.. "yyyy-MM-dd'T'HH:mm:ss'Z'"
      * 
-     * @param ele		Parent Element
-     * @param tagName	Child tag-name
-     * @return	Calendar value of contents
+     * @param ele
+     *            Parent Element
+     * @param tagName
+     *            Child tag-name
+     * @return Calendar value of contents
      */
     static Calendar getDateTimeValue(Element ele, String tagName)
     {
@@ -165,9 +184,11 @@ public class ElementValue
      * 
      * Expects Date in this format -- "yyyy-MM-dd"
      * 
-     * @param ele		Parent Element
-     * @param tagName	Child tag-name
-     * @return	Calendar value of contents
+     * @param ele
+     *            Parent Element
+     * @param tagName
+     *            Child tag-name
+     * @return Calendar value of contents
      */
     static Calendar getDateValue(Element ele, String tagName)
     {
